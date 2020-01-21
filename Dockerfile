@@ -17,9 +17,9 @@ ENV UT_WEBADMINPWD="admin"
 # Original Server v436
 ADD ut-server-linux-436.tar.gz /
 # Update to 451
-ADD UTPGPatch451LINUX.tar.gz /ut-server/
+ADD Patches/UTPGPatch451LINUX.tar.gz /ut-server/
 # Fix for broken maps from the original file
-ADD BrokenMapsFix.tar.gz /ut-server/
+ADD Patches/BrokenMapsFix.tar.gz /ut-server/
 # Add the bonus packs
 ADD UTBonusPack1.tar.gz /ut-server/
 ADD UTBonusPack2.tar.gz /ut-server/
@@ -30,16 +30,26 @@ ADD Mutators/FlagAnnouncementsV2.tar.gz /ut-server/
 ADD Mutators/MapVoteLAv2.tar.gz /ut-server/
 ADD Mutators/WhoPushedMe.tar.gz /ut-server/
 ADD Mutators/ZeroPingPlus103.tar.gz /ut-server/
+# Maps Packed
+ADD Maps-Packed/CTF-Bollwerk109.tar.gz /ut-server/
 # Maps
+ADD Maps/CTF-AceOfSpace.unr /ut-server/Maps/
 ADD Maps/CTF-AllYourW00t.unr /ut-server/Maps/
 ADD Maps/CTF-andACTION.unr /ut-server/Maps/
-ADD Maps/CTF-Bollwerk109.tar.gz /ut-server/
+ADD Maps/CTF-EternalCommandv2.unr /ut-server/Maps/
+ADD Maps/CTF-Frostburn][[].unr /ut-server/Maps/
+ADD Maps/CTF-Lucius.unr /ut-server/Maps/
+ADD Maps/CTF-MarsDuo.unr /ut-server/Maps/
 ADD Maps/CTF-Niven.unr /ut-server/Maps/
+ADD Maps/CTF-Schmall.unr /ut-server/Maps/
+ADD Maps/CTF-Visse.unr /ut-server/Maps/
+ADD Maps/DM-Dexterity.unr /ut-server/Maps/
 # Startup scripts
-ADD initialize.sh /
-ADD startup.sh /
-ADD startup.py /
+ADD Scripts/initialize.sh /
+ADD Scripts/startup.sh /
+ADD Scripts/startup.py /
 
+# Create a link of this file to the missing file
 RUN ln -s /ut-server/System/libSDL-1.1.so.0 /ut-server/System/libSDL-1.2.so.0
 
 EXPOSE 27900/udp 5580/tcp 7777/udp 7778/udp 7779/udp 7780/udp 7781/udp
