@@ -12,29 +12,13 @@ ADD files/Patches/UTPGPatch451LINUX.tar.gz /ut-server/
 # Fix for broken maps from the original file
 ADD files/Patches/BrokenMapsFix.tar.gz /ut-server/
 # Add the bonus packs
-ADD files/UTBonusPack1.tar.gz /ut-server/
-ADD files/UTBonusPack2.tar.gz /ut-server/
-ADD files/UTBonusPack3.tar.gz /ut-server/
-ADD files/UTBonusPack4.tar.gz /ut-server/
+ADD files/UTBonusPack* /ut-server/
 # Mutators
-ADD files/Mutators/FlagAnnouncementsV2.tar.gz /ut-server/
-ADD files/Mutators/MapVoteLAv2.tar.gz /ut-server/
-ADD files/Mutators/WhoPushedMe.tar.gz /ut-server/
-ADD files/Mutators/ZeroPingPlus103.tar.gz /ut-server/
+ADD files/Mutators/* /ut-server/
 # Maps Packed
-ADD files/Maps-Packed/CTF-Bollwerk109.tar.gz /ut-server/
+ADD files/Maps-Packed/* /ut-server/
 # Maps
-ADD files/Maps/CTF-AceOfSpace.unr /ut-server/Maps/
-ADD files/Maps/CTF-AllYourW00t.unr /ut-server/Maps/
-ADD files/Maps/CTF-andACTION.unr /ut-server/Maps/
-ADD files/Maps/CTF-EternalCommandv2.unr /ut-server/Maps/
-ADD files/Maps/CTF-Frostburn][[].unr /ut-server/Maps/
-ADD files/Maps/CTF-Lucius.unr /ut-server/Maps/
-ADD files/Maps/CTF-MarsDuo.unr /ut-server/Maps/
-ADD files/Maps/CTF-Niven.unr /ut-server/Maps/
-ADD files/Maps/CTF-Schmall.unr /ut-server/Maps/
-ADD files/Maps/CTF-Visse.unr /ut-server/Maps/
-ADD files/Maps/DM-Dexterity.unr /ut-server/Maps/
+ADD files/Maps/* /ut-server/Maps/
 # Startup scripts
 ADD files/Scripts/startup.sh /
 ADD files/Scripts/prepare.py /
