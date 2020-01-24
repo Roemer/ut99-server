@@ -40,21 +40,34 @@ def initial_setup():
     set_config_value(utIniFileServer, 'Engine.GameInfo', 'GamePassword', '')
 
     # Add Mutators
+    ## CustomCrossHairScale
+    set_config_value(utIniFileServer, 'Engine.GameEngine', 'ServerPackages', 'CCHS4', True)
+    set_config_value(utIniFileServer, 'Engine.GameEngine', 'ServerActors', 'CCHS4.CCHS', True)
+    os.remove(f"/{utServerPath}/System/CCHS4.int")
+    ## FlagAnnouncementsV2
+    set_config_value(utIniFileServer, 'Engine.GameEngine', 'ServerPackages', 'FlagAnnouncementsV2', True)
+    set_config_value(utIniFileServer, 'Engine.GameEngine', 'ServerPackages', 'DefaultAnnouncements', True)
+    ## KickIdlePlayers2
+    set_config_value(utIniFileServer, 'Engine.GameEngine', 'ServerPackages', 'KickIdlePlayers2', True)
+    ## MapVoteLAv2
+    set_config_value(utIniFileServer, 'Engine.GameEngine', 'ServerPackages', 'MapVoteLAv2', True)
     ## WhoPushedMe
     set_config_value(utIniFileServer, 'Engine.GameEngine', 'ServerPackages', 'EnhancedItems', True)
     set_config_value(utIniFileServer, 'Engine.GameEngine', 'ServerPackages', 'WhoPushedMe', True)
-    ## FlagAnnouncementsV2
-    set_config_value(utIniFileServer, 'Engine.GameEngine', 'ServerActors', 'FlagAnnouncementsV2.FlagAnnouncements', True)
-    set_config_value(utIniFileServer, 'Engine.GameEngine', 'ServerPackages', 'FlagAnnouncementsV2', True)
-    set_config_value(utIniFileServer, 'Engine.GameEngine', 'ServerPackages', 'DefaultAnnouncements', True)
-    # ZeroPingPlus103
+    ## ZeroPingPlus103
     set_config_value(utIniFileServer, 'Engine.GameEngine', 'ServerPackages', 'ZeroPingPlus103', True)
-    # MapVoteLAv2
-    set_config_value(utIniFileServer, 'Engine.GameEngine', 'ServerPackages', 'MapVoteLAv2', True)
 
     # Move and symlink the ini files
     move_and_symlink(utIniFileServer, utIniFileData)
     move_and_symlink(f"/{utServerPath}/System/FlagAnnouncements.ini", f"/{utDataPath}/System/FlagAnnouncements.ini")
+    move_and_symlink(f"/{utServerPath}/System/KickIdlePlayers2.ini", f"/{utDataPath}/System/KickIdlePlayers2.ini")
+    move_and_symlink(f"/{utServerPath}/System/NoSelfDamage.ini", f"/{utDataPath}/System/NoSelfDamage.ini")
+
+    # Fix some file cases (to prevent a warning)
+    os.rename(f"/{utServerPath}/System/BotPack.u", f"/{utServerPath}/System/Botpack.u")
+    os.rename(f"/{utServerPath}/Textures/UTcrypt.utx", f"/{utServerPath}/Textures/utcrypt.utx")
+    os.rename(f"/{utServerPath}/Textures/GenFluid.utx", f"/{utServerPath}/Textures/genfluid.utx")
+    os.rename(f"/{utServerPath}/Textures/Soldierskins.utx", f"/{utServerPath}/Textures/SoldierSkins.utx")
 
 def prepare():
     # Remove all Symlinks
