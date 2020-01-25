@@ -13,18 +13,19 @@ ADD files/Patches/UTPGPatch451LINUX.tar.gz /ut-server/
 ADD files/Patches/BrokenMapsFix.tar.gz /ut-server/
 # Add the bonus packs
 ADD files/UTBonusPack* /ut-server/
-# Mutators
-ADD files/Mutators/* /ut-server/
-# Maps Packed
-ADD files/Maps-Packed/* /ut-server/
-# Maps
-ADD files/Maps/* /ut-server/Maps/
 # Startup scripts
 ADD files/Scripts/startup.sh /
 ADD files/Scripts/prepare.py /
 
+# Additonal Mutators
+ADD files/Mutators/* /ut-data/
+# Additonal Maps Packed
+ADD files/Maps-Packed/* /ut-data/
+# Maps
+ADD files/Maps/* /ut-data/Maps/
+
 # Environment variables
-ENV UT_SERVERURL="CTF-Face?game=BotPack.CTFGame?mutator=BotPack.InstaGibDM,MapVoteLAv2.BDBMapVote"
+ENV UT_SERVERURL="CTF-Face?game=BotPack.CTFGame?mutator=BotPack.InstaGibDM,MapVoteLAv2.BDBMapVote,FlagAnnouncementsV2.FlagAnnouncements"
 
 # Create a link of this file to the missing file
 RUN ln -s /ut-server/System/libSDL-1.1.so.0 /ut-server/System/libSDL-1.2.so.0
@@ -32,5 +33,7 @@ RUN ln -s /ut-server/System/libSDL-1.1.so.0 /ut-server/System/libSDL-1.2.so.0
 EXPOSE 27900/udp 5580/tcp 7777/udp 7778/udp 7779/udp 7780/udp 7781/udp
 
 RUN python3 /prepare.py i
+
+VOLUME /ut-data
 
 CMD ["/startup.sh"]

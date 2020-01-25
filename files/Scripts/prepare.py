@@ -17,12 +17,11 @@ def main():
 
 def initial_setup():
     # Prepare the directories
-    os.mkdir('/ut-data')
-    os.mkdir('/ut-data/Maps')
-    os.mkdir('/ut-data/Music')
-    os.mkdir('/ut-data/Sounds')
-    os.mkdir('/ut-data/System')
-    os.mkdir('/ut-data/Textures')
+    os.makedirs('/ut-data/Maps', exist_ok=True)
+    os.makedirs('/ut-data/Music', exist_ok=True)
+    os.makedirs('/ut-data/Sounds', exist_ok=True)
+    os.makedirs('/ut-data/System', exist_ok=True)
+    os.makedirs('/ut-data/Textures', exist_ok=True)
 
     # Initialize ini with good default values
     ## Enable the web admin and set username/password
@@ -38,12 +37,17 @@ def initial_setup():
     ## Replace / Add Admin and Game password
     set_config_value(utIniFileServer, 'Engine.GameInfo', 'AdminPassword', 'admin')
     set_config_value(utIniFileServer, 'Engine.GameInfo', 'GamePassword', '')
+    ## Add some bots by default
+    set_config_value(utIniFileServer, 'Botpack.DeathMatchPlus', 'MinPlayers', '4')
 
     # Add Mutators
+    ## BTPlusPlusv0994
+    set_config_value(utIniFileServer, 'Engine.GameEngine', 'ServerPackages', 'BTPPUser', True)
+    set_config_value(utIniFileServer, 'Engine.GameEngine', 'ServerPackages', 'BTPlusPlusv0994_C', True)
     ## CustomCrossHairScale
     set_config_value(utIniFileServer, 'Engine.GameEngine', 'ServerPackages', 'CCHS4', True)
     set_config_value(utIniFileServer, 'Engine.GameEngine', 'ServerActors', 'CCHS4.CCHS', True)
-    os.remove(f"/{utServerPath}/System/CCHS4.int")
+    os.remove(f"/{utDataPath}/System/CCHS4.int")
     ## FlagAnnouncementsV2
     set_config_value(utIniFileServer, 'Engine.GameEngine', 'ServerPackages', 'FlagAnnouncementsV2', True)
     set_config_value(utIniFileServer, 'Engine.GameEngine', 'ServerPackages', 'DefaultAnnouncements', True)
@@ -57,11 +61,8 @@ def initial_setup():
     ## ZeroPingPlus103
     set_config_value(utIniFileServer, 'Engine.GameEngine', 'ServerPackages', 'ZeroPingPlus103', True)
 
-    # Move and symlink the ini files
+    # Move and/or symlink the original ini files
     move_and_symlink(utIniFileServer, utIniFileData)
-    move_and_symlink(f"/{utServerPath}/System/FlagAnnouncements.ini", f"/{utDataPath}/System/FlagAnnouncements.ini")
-    move_and_symlink(f"/{utServerPath}/System/KickIdlePlayers2.ini", f"/{utDataPath}/System/KickIdlePlayers2.ini")
-    move_and_symlink(f"/{utServerPath}/System/NoSelfDamage.ini", f"/{utDataPath}/System/NoSelfDamage.ini")
 
     # Fix some file cases (to prevent a warning)
     os.rename(f"/{utServerPath}/System/BotPack.u", f"/{utServerPath}/System/Botpack.u")
@@ -105,7 +106,10 @@ def prepare():
 
 def move_and_symlink(fileSrc, fileDest):
     os.rename(fileSrc, fileDest)
-    os.symlink(fileDest, fileSrc)
+    symlink(fileDest, fileSrc)
+
+def symlink(fileSrc, fileDest):
+    os.symlink(fileSrc, fileDest)
 
 def set_config_to_environment(environmentKey, filePath, section, key):
     if os.environ.get(environmentKey) is not None:
