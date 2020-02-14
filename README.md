@@ -7,7 +7,7 @@ All data can be adjusted with a `named volume` (host bind won't work) (see `Usag
 # Usage
 Just run the docker image with the following command:
 ```
-docker run --name ut99 -p 5580:5580 -p 7777:7777/udp -p 7778:7778/udp -v ut99-data:/ut-data ut99-server:latest
+docker run --name ut99 -p 5580:5580 -p 7777:7777/udp -p 7778:7778/udp -v ut99-data:/ut-data roemer/ut99-server:latest
 ```
 This will create and run the container, exposing the web-admin under port 5580 and the game under 7777.
 It will also create a docker volume named `ut99-data` which contains all the ini files and non-standard maps and mods.
