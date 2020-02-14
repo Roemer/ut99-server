@@ -41,9 +41,6 @@ def initial_setup():
     set_config_value(utIniFileServer, 'Botpack.DeathMatchPlus', 'MinPlayers', '4')
 
     # Add Mutators
-    ## BTPlusPlusv0994
-    set_config_value(utIniFileServer, 'Engine.GameEngine', 'ServerPackages', 'BTPPUser', True)
-    set_config_value(utIniFileServer, 'Engine.GameEngine', 'ServerPackages', 'BTPlusPlusv0994_C', True)
     ## CustomCrossHairScale
     set_config_value(utIniFileServer, 'Engine.GameEngine', 'ServerPackages', 'CCHS4', True)
     set_config_value(utIniFileServer, 'Engine.GameEngine', 'ServerActors', 'CCHS4.CCHS', True)

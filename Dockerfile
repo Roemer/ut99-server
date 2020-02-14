@@ -36,4 +36,6 @@ RUN python3 /prepare.py i
 
 VOLUME /ut-data
 
+RUN chmod +x startup.sh
+
 CMD ["/startup.sh"]
