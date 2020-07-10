@@ -39,6 +39,14 @@ def initial_setup():
     set_config_value(utIniFileServer, 'Engine.GameInfo', 'GamePassword', '')
     ## Add some bots by default
     set_config_value(utIniFileServer, 'Botpack.DeathMatchPlus', 'MinPlayers', '4')
+    ## Section to enable/disable publishing the server in the server list
+    set_config_value(utIniFileServer, 'IpServer.UdpServerUplink', 'DoUpLink', 'False')
+    set_config_value(utIniFileServer, 'IpServer.UdpServerUplink', 'UpdateMinutes', '1')
+    set_config_value(utIniFileServer, 'IpServer.UdpServerUplink', 'MasterServerPort', '27900')
+    ## Add server visibility in server browser inside game by adding correct URLs
+    set_config_value(utIniFileServer, 'Engine.GameEngine', 'ServerActors', 'IpServer.UdpServerUplink MasterServerAddress=utmaster.epicgames.com MasterServerPort=27900', True)
+    set_config_value(utIniFileServer, 'Engine.GameEngine', 'ServerActors', 'IpServer.UdpServerUplink MasterServerAddress=master.noccer.de MasterServerPort=27900', True)
+    set_config_value(utIniFileServer, 'Engine.GameEngine', 'ServerActors', 'IpServer.UdpServerUplink MasterServerAddress=master.333networks.com MasterServerPort=27900', True)
 
     # Add Mutators
     ## CustomCrossHairScale
@@ -97,6 +105,8 @@ def prepare():
     set_config_to_environment('UT_ADMINNAME', utIniFileServer, 'Engine.GameReplicationInfo', 'AdminName')
     set_config_to_environment('UT_ADMINEMAIL', utIniFileServer, 'Engine.GameReplicationInfo', 'AdminEmail')
     set_config_to_environment('UT_MOTD1', utIniFileServer, 'Engine.GameReplicationInfo', 'MOTDLine1')
+    ## Replace / Add Master server connection information
+    set_config_to_environment('UT_DOUPLINK', utIniFileServer, 'IpServer.UdpServerUplink', 'DoUpLink')
     ## Replace / Add Admin and Game password
     set_config_to_environment('UT_ADMINPWD', utIniFileServer, 'Engine.GameInfo', 'AdminPassword')
     set_config_to_environment('UT_GAMEPWD', utIniFileServer, 'Engine.GameInfo', 'GamePassword')
@@ -114,7 +124,7 @@ def set_config_to_environment(environmentKey, filePath, section, key):
 
 def set_config_value(filePath, section, key, value, alwaysInsert=False):
     """
-    This method replaces an exiting key with the value or adds a new one.
+    This method replaces an exiting key with the value or adds a new one. Also adds the section if it cannot be found.
 
     Args:
         filePath (str)    : The path to the file.
@@ -129,8 +139,12 @@ def set_config_value(filePath, section, key, value, alwaysInsert=False):
     f.close()
     # Loop thru all existing lines
     inSection = False
+    foundSection = False
     foundKey = False
     for index, line in enumerate(contents):
+        # Skip empty lines
+        if len(line) == 0:
+            continue
         # Skip comments
         if line[0] == '#' or line[0] == '/':
             continue
@@ -139,6 +153,7 @@ def set_config_value(filePath, section, key, value, alwaysInsert=False):
             currSection = line[1:line.index(']')]
             # Check if we are in the desired section
             if currSection == section:
+                foundSection = True
                 inSection = True
                 continue
             else:
@@ -157,7 +172,7 @@ def set_config_value(filePath, section, key, value, alwaysInsert=False):
                         # The value is aleady the desired value, so skip it.
                         return
                     if (alwaysInsert):
-                        # Continue searching for the key/value pari
+                        # Continue searching for the key/value pair
                         continue
                     foundKey = True
                     break
@@ -165,11 +180,21 @@ def set_config_value(filePath, section, key, value, alwaysInsert=False):
     if (foundKey):
         # We found a key where we want to replace the value, so delete the old key/value
         del contents[index]
+    elif (not foundSection):
+        # We couldn't find the section, so add the section at the very end and adjust the index
+        index += 1
+        contents.insert(index, f"\n")
+        index += 1
+        contents.insert(index, f"[{section}]\n")
+        index += 1
+    elif index == len(contents) - 1:        
+        # We are at the very last line, increase the index so we add the new value below at the end
+        index += 1
     else:
         # As we are past the last key/value of the desired section, we will go back one line
-        index = index - 1
+        index -= 1
     # Insert the new value
-    newLine = f"{key}={value}{os.linesep}"
+    newLine = f"{key}={value}\n"
     contents.insert(index, newLine)
     # Write back the file
     f = open(filePath, "w")
