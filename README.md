@@ -9,6 +9,10 @@ Just run the docker image with the following command:
 ```
 docker run --name ut99 -p 5580:5580 -p 7777:7777/udp -p 7778:7778/udp -p 8777:8777/udp -v ut99-data:/ut-data roemer/ut99-server:latest
 ```
+Alternatively, you can use compose to run it:
+```
+docker compose up
+```
 This will create and run the container, exposing the web-admin under port 5580 and the game under 7777.
 It will also create a docker volume named `ut99-data` which contains all the ini files and non-standard maps and mods.
 You can even add your own maps and mods there or edit all the ini files in that volume and restart the server for the new files or configs.
@@ -71,3 +75,9 @@ When this mode is enabled, detects if someone is killed because someone else pus
 ## ZeroPingPlus103
 This mod is added as a mutator. So it must be added to the mutators list to work.
 When this mod is enabled, the clientside calculates if a hit was a hit or not and tells this the server, effectively leading to 0 ping.
+
+# Development
+To build the image yourself, just use
+```
+docker compose build --no-cache
+```
