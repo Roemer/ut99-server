@@ -41,8 +41,11 @@ def initial_setup():
     set_config_value(utIniFileServer, 'Engine.GameInfo', 'GamePassword', '')
     ## Add some bots by default
     set_config_value(utIniFileServer, 'Botpack.DeathMatchPlus', 'MinPlayers', '4')
+    set_config_value(utIniFileServer, 'Botpack.CTFGame', 'MinPlayers', '8')
+    set_config_value(utIniFileServer, 'Botpack.DeathMatchPlus', 'InitialBots', '4')
+    set_config_value(utIniFileServer, 'Botpack.CTFGame', 'InitialBots', '8')
     ## Section to enable/disable publishing the server in the server list
-    set_config_value(utIniFileServer, 'IpServer.UdpServerUplink', 'DoUpLink', 'False')
+    set_config_value(utIniFileServer, 'IpServer.UdpServerUplink', 'DoUpLink', 'True')
     set_config_value(utIniFileServer, 'IpServer.UdpServerUplink', 'UpdateMinutes', '1')
     set_config_value(utIniFileServer, 'IpServer.UdpServerUplink', 'MasterServerPort', '27900')
     ## Add server visibility in server browser inside game by adding correct URLs
@@ -113,6 +116,11 @@ def prepare():
     ## Replace / Add Admin and Game password
     set_config_to_environment('UT_ADMINPWD', utIniFileServer, 'Engine.GameInfo', 'AdminPassword')
     set_config_to_environment('UT_GAMEPWD', utIniFileServer, 'Engine.GameInfo', 'GamePassword')
+    ## Replace / Add Minimum Players
+    set_config_to_environment('UT_MINPLAYERS_DM', utIniFileServer, 'Botpack.DeathMatchPlus', 'MinPlayers')
+    set_config_to_environment('UT_MINPLAYERS_CTF', utIniFileServer, 'Botpack.CTFGame', 'MinPlayers')
+    set_config_to_environment('UT_INITIALBOTS_DM', utIniFileServer, 'Botpack.DeathMatchPlus', 'InitialBots')
+    set_config_to_environment('UT_INITIALBOTS_CTF', utIniFileServer, 'Botpack.CTFGame', 'InitialBots')
 
 def move_and_symlink(fileSrc, fileDest):
     os.replace(fileSrc, fileDest)
