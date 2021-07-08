@@ -8,6 +8,8 @@ utDataPath = "/ut-data"
 folders = ["Maps", "Music", "Sounds", "System", "Textures"]
 utIniFileServer = f"/{utServerPath}/System/UnrealTournament.ini"
 utIniFileData = f"/{utDataPath}/System/UnrealTournament.ini"
+userIniFileServer = f"/{utServerPath}/System/User.ini"
+userIniFileData = f"/{utDataPath}/System/User.ini"
 
 def main():
     if len(sys.argv) >= 2 and sys.argv[1] == "i":
@@ -67,6 +69,7 @@ def initial_setup():
 
     # Move and/or symlink the original ini files
     move_and_symlink(utIniFileServer, utIniFileData)
+    move_and_symlink(userIniFileServer, userIniFileData)
 
     # Fix some file cases (to prevent a warning)
     os.rename(f"/{utServerPath}/System/BotPack.u", f"/{utServerPath}/System/Botpack.u")
@@ -93,7 +96,8 @@ def prepare():
             fullFilePath = os.path.join(folderPath, entry)
             print(f'[L] {os.path.join(folder, entry)}')
             targetPath = os.path.join(utServerPath, folder, entry)
-            os.symlink(fullFilePath, targetPath)
+            if not (os.path.lexists(targetPath)):
+                os.symlink(fullFilePath, targetPath)
 
     # Update some config values according to optional environment variables
     ## Enable the web admin and set username/password
@@ -111,7 +115,7 @@ def prepare():
     set_config_to_environment('UT_GAMEPWD', utIniFileServer, 'Engine.GameInfo', 'GamePassword')
 
 def move_and_symlink(fileSrc, fileDest):
-    os.rename(fileSrc, fileDest)
+    os.replace(fileSrc, fileDest)
     symlink(fileDest, fileSrc)
 
 def symlink(fileSrc, fileDest):
