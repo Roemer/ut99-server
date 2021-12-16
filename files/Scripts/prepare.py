@@ -75,7 +75,7 @@ def initial_setup():
     move_and_symlink(userIniFileServer, userIniFileData)
 
     # Fix some file cases (to prevent a warning)
-    os.rename(f"/{utServerPath}/System/BotPack.u", f"/{utServerPath}/System/Botpack.u")
+#    os.rename(f"/{utServerPath}/System/BotPack.u", f"/{utServerPath}/System/Botpack.u")
     os.rename(f"/{utServerPath}/Textures/UTcrypt.utx", f"/{utServerPath}/Textures/utcrypt.utx")
     os.rename(f"/{utServerPath}/Textures/GenFluid.utx", f"/{utServerPath}/Textures/genfluid.utx")
     os.rename(f"/{utServerPath}/Textures/Soldierskins.utx", f"/{utServerPath}/Textures/SoldierSkins.utx")
