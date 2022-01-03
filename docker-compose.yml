@@ -1,7 +1,9 @@
 version: "3.9"
 services:
   ut99-server:
-    build: .
+    build:
+      context: ./files
+      dockerfile: Dockerfile
     image: roemer/ut99-server:latest
     volumes:
       - ut99-data:/ut-data
