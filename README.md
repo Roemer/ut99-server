@@ -7,7 +7,7 @@ All data can be adjusted with a `named volume` (host bind won't work) (see `Usag
 # Usage
 Just run the docker image with the following command:
 ```
-docker run --name ut99 -p 5580:5580 -p 7777:7777/udp -p 7778:7778/udp -p 8777:8777/udp -v ut99-data:/ut-data roemer/ut99-server:latest
+docker run --name ut99 -p 5580:5580 -p 7777:7777/udp -p 7778:7778/udp -p 7779:7779/udp -p 7780:7780/udp -p 7781:7781/udp -p 8777:8777/udp -p 27900:27900 -p 27900:27900/udp -v ut99-data:/ut-data roemer/ut99-server:latest
 ```
 Alternatively, you can use compose to run it:
 ```

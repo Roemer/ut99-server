@@ -16,7 +16,6 @@ ADD files/UTBonusPack* /ut-server/
 # Startup scripts
 ADD files/Scripts/startup.sh /
 ADD files/Scripts/prepare.py /
-
 # Additonal Mutators
 ADD files/Mutators/* /ut-data/
 # Additonal Maps Packed
@@ -30,12 +29,12 @@ ENV UT_SERVERURL="CTF-Face?game=BotPack.CTFGame?mutator=BotPack.InstaGibDM,MapVo
 # Create a link of this file to the missing file
 RUN ln -s /ut-server/System/libSDL-1.1.so.0 /ut-server/System/libSDL-1.2.so.0
 
-EXPOSE 27900/udp 5580/tcp 7777/udp 7778/udp 7779/udp 7780/udp 7781/udp
-
+# Run the initial setup
 RUN python3 /prepare.py i
 
+EXPOSE 5580/tcp 7777/udp 7778/udp 7779/udp 7780/udp 7781/udp 8777/udp 27900/tcp 27900/udp
 VOLUME /ut-data
 
+# Run the startup script
 RUN chmod +x startup.sh
-
 CMD ["/startup.sh"]
