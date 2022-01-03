@@ -74,8 +74,10 @@ def initial_setup():
     move_and_symlink(utIniFileServer, utIniFileData)
     move_and_symlink(userIniFileServer, userIniFileData)
 
+    # Remove the original BotPack.u and just keep the newer Botpack.u from the latest patch
+    os.remove(f"/{utServerPath}/System/BotPack.u")
+
     # Fix some file cases (to prevent a warning)
-    os.rename(f"/{utServerPath}/System/BotPack.u", f"/{utServerPath}/System/Botpack.u")
     os.rename(f"/{utServerPath}/Textures/UTcrypt.utx", f"/{utServerPath}/Textures/utcrypt.utx")
     os.rename(f"/{utServerPath}/Textures/GenFluid.utx", f"/{utServerPath}/Textures/genfluid.utx")
     os.rename(f"/{utServerPath}/Textures/Soldierskins.utx", f"/{utServerPath}/Textures/SoldierSkins.utx")
@@ -198,7 +200,7 @@ def set_config_value(filePath, section, key, value, alwaysInsert=False):
         index += 1
         contents.insert(index, f"[{section}]\n")
         index += 1
-    elif index == len(contents) - 1:        
+    elif index == len(contents) - 1:
         # We are at the very last line, increase the index so we add the new value below at the end
         index += 1
     else:
