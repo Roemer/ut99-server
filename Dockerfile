@@ -1,9 +1,4 @@
-FROM i386/ubuntu:18.04
-
-# Prepare the system
-RUN apt-get update && \
-    apt-get install -y nano python3 libx11-6 libxext6 && \
-    rm -rf /var/lib/apt/lists/*
+FROM amd64/ubuntu:latest
 
 # Original Server v436
 ADD files/ut-server-linux-436.tar.gz /
@@ -25,6 +20,12 @@ ADD files/Maps/* /ut-data/Maps/
 
 # Environment variables
 ENV UT_SERVERURL="CTF-Face?game=BotPack.CTFGame?mutator=BotPack.InstaGibDM,MapVoteLAv2.BDBMapVote,FlagAnnouncementsV2.FlagAnnouncements"
+
+# Prepare the system
+RUN dpkg --add-architecture i386 \
+    && apt update \
+    && apt install -y nano curl wget python3 jq libx11-6:i386 \
+    && rm -rf /var/lib/apt/lists/*
 
 # Create a link of this file to the missing file
 RUN ln -s /ut-server/System/libSDL-1.1.so.0 /ut-server/System/libSDL-1.2.so.0
