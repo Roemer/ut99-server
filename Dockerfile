@@ -8,9 +8,8 @@ ADD files/Patches/OldUnreal-UTPatch469b-Linux.tar.bz2 /ut-server/
 ADD files/Patches/BrokenMapsFix.tar.gz /ut-server/
 # Add the bonus packs
 ADD files/UTBonusPack* /ut-server/
-# Startup scripts
-ADD files/Scripts/startup.sh /
-ADD files/Scripts/prepare.py /
+# Startup & health scripts
+ADD files/Scripts/ /
 # Additonal Mutators
 ADD files/Mutators/* /ut-data/
 # Additonal Maps Packed
@@ -39,3 +38,4 @@ VOLUME /ut-data
 # Run the startup script
 RUN chmod +x startup.sh
 CMD ["/startup.sh"]
+HEALTHCHECK --interval=30s --timeout=30s --start-period=1m --retries=3 CMD python3 health.py || exit 1
