@@ -38,4 +38,4 @@ VOLUME /ut-data
 # Run the startup script
 RUN chmod +x startup.sh
 CMD ["/startup.sh"]
-HEALTHCHECK --interval=30s --timeout=30s --start-period=1m --retries=3 CMD python3 health.py || exit 1
+HEALTHCHECK --interval=30s --timeout=3s --start-period=1m --retries=3 CMD python3 health.py || exit 1
