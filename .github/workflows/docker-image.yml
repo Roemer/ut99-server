@@ -7,6 +7,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      SARIF_FILE_NAME: trivy-results-docker.sarif
+      IMAGE_NAME: roemer/ut99-server:latest
     steps:
     - uses: actions/checkout@v2
     - name: Build the Docker image
@@ -18,7 +21,7 @@ jobs:
         # Scan type to use for scanning vulnerability
         scan-type: image
         # image reference (for backward compatibility)
-        image-ref: roemer/ut99-server:latest
+        image-ref: $IMAGE_NAME
         # Scan reference
         scan-ref: .
         # exit code when vulnerabilities were found
@@ -32,13 +35,17 @@ jobs:
         # use an existing template for rendering output (@/contrib/sarif.tpl, @/contrib/gitlab.tpl, @/contrib/junit.tpl
         template: '@/contrib/sarif.tpl'
         # writes results to a file with the specified file name
-        output: trivy-results-docker.sarif
+        output: $SARIF_FILE_NAME
         # timeout (default 5m0s)
         timeout: 5m0s
         # hide progress output
         hide-progress: false
         # output all packages regardless of vulnerability
         list-all-pkgs: false
+    - name: Upload Trivy scan results to GitHub Security tab
+      uses: github/codeql-action/upload-sarif@v1
+      with:
+        sarif_file: $SARIF_FILE_NAME
       
     - name: Docker login
       env:
@@ -46,6 +53,6 @@ jobs:
         DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
       run: docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
     - name: Docker push
-      run: docker push roemer/ut99-server:latest
+      run: docker push $IMAGE_NAME
     - name: Docker logout
       run: docker logout
