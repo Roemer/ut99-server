@@ -21,7 +21,7 @@ jobs:
         # Scan type to use for scanning vulnerability
         scan-type: image
         # image reference (for backward compatibility)
-        image-ref: $IMAGE_NAME
+        image-ref: ${{env.IMAGE_NAME}}
         # Scan reference
         scan-ref: .
         # exit code when vulnerabilities were found
@@ -35,7 +35,7 @@ jobs:
         # use an existing template for rendering output (@/contrib/sarif.tpl, @/contrib/gitlab.tpl, @/contrib/junit.tpl
         template: '@/contrib/sarif.tpl'
         # writes results to a file with the specified file name
-        output: $SARIF_FILE_NAME
+        output: ${{env.SARIF_FILE_NAME}}
         # timeout (default 5m0s)
         timeout: 5m0s
         # hide progress output
@@ -45,7 +45,7 @@ jobs:
     - name: Upload Trivy scan results to GitHub Security tab
       uses: github/codeql-action/upload-sarif@v1
       with:
-        sarif_file: $SARIF_FILE_NAME
+        sarif_file: ${{env.SARIF_FILE_NAME}}
       
     - name: Docker login
       env:
