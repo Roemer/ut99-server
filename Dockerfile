@@ -10,6 +10,8 @@ ADD files/Patches/BrokenMapsFix.tar.gz /ut-server/
 ADD files/UTBonusPack* /ut-server/
 # Additional Mutators
 ADD files/Mutators/* /ut-data/
+# Additional Mods
+ADD files/Mods/* /ut-data/
 # Additional Maps Packed
 ADD files/Maps-Packed/* /ut-data/
 # Additional Single Maps

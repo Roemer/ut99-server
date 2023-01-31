@@ -87,6 +87,13 @@ def initial_setup():
     set_config_value(utIniFileServer, 'Engine.GameEngine', 'ServerPackages', 'SLV2Fonts', True)
     set_config_value(utIniFileServer, 'Engine.GameEngine', 'ServerPackages', 'SLV2Textures', True)
 
+    # Add Mods
+    ## BunnyTrack
+    set_config_value(utIniFileServer, 'Engine.GameEngine', 'ServerPackages', 'BTPPUser', True)
+    set_config_value(utIniFileServer, 'Engine.GameEngine', 'ServerPackages', 'CountryFlags3', True)
+    set_config_value(utIniFileServer, 'Engine.GameEngine', 'ServerPackages', 'BTPlusPlusPublicUTBT_beta3', True)
+    set_config_value(utIniFileServer, 'Engine.GameEngine', 'ServerPackages', 'BTPlusPlusPublicUTBT_beta3.BTPlusPlus', True)
+
     # Move and/or symlink the original ini files
     move_and_symlink(utIniFileServer, utIniFileData)
     move_and_symlink(userIniFileServer, userIniFileData)
