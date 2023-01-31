@@ -4,4 +4,3 @@ for /f "delims=" %%A in ('cd') do (
 )
 tar -cvzf ..\%foldername%.tar.gz *.*
 cd ..
-pause
