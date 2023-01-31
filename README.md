@@ -68,6 +68,9 @@ This mod is added as a mutator. So it must be added to the mutators list to work
 When this mod is enabled, self damage (for example from rocket launchers) can be disabled.
 Further configuration can be done in the `System/NoSelfDamage.ini` file.
 
+## StrangeLove v2.05
+SLV, or Strangelove, is a mod inspired by the film Dr. Strangelove where redeemers are replaced with missiles that a player can use to fly around a map.
+
 ## WhoPushedMe
 This mod is added as a mutator. So it must be added to the mutators list to work.
 When this mode is enabled, detects if someone is killed because someone else pushed/hit them and they fell to their death and grants the killer the corresponding points (or negative points when a teammate is killed).
