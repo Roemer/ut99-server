@@ -8,45 +8,11 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      SARIF_FILE_NAME: trivy-results-docker.sarif
       IMAGE_NAME: roemer/ut99-server:latest
     steps:
     - uses: actions/checkout@v2
     - name: Build the Docker image
       run: docker compose build --no-cache
-      
-    - name: Aqua Security Trivy
-      uses: aquasecurity/trivy-action@0.2.1
-      with:
-        # Scan type to use for scanning vulnerability
-        scan-type: image
-        # image reference (for backward compatibility)
-        image-ref: ${{env.IMAGE_NAME}}
-        # Scan reference
-        scan-ref: .
-        # exit code when vulnerabilities were found
-        exit-code: 0
-        # ignore unfixed vulnerabilities
-        ignore-unfixed: false
-        # severities of vulnerabilities to be displayed
-        severity: UNKNOWN,LOW,MEDIUM,HIGH,CRITICAL
-        # output format (table, json, template)
-        format: template
-        # use an existing template for rendering output (@/contrib/sarif.tpl, @/contrib/gitlab.tpl, @/contrib/junit.tpl
-        template: '@/contrib/sarif.tpl'
-        # writes results to a file with the specified file name
-        output: ${{env.SARIF_FILE_NAME}}
-        # timeout (default 5m0s)
-        timeout: 5m0s
-        # hide progress output
-        hide-progress: false
-        # output all packages regardless of vulnerability
-        list-all-pkgs: false
-    - name: Upload Trivy scan results to GitHub Security tab
-      uses: github/codeql-action/upload-sarif@v1
-      with:
-        sarif_file: ${{env.SARIF_FILE_NAME}}
-      
     - name: Docker login
       env:
         DOCKER_USER: ${{secrets.DOCKER_USER}}
