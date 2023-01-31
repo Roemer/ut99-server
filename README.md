@@ -43,6 +43,10 @@ Also all ini files can be found there in the `System` folder so they can be adju
 
 # Included Mods and Mutators
 
+## BunnyTrack
+BunnyTrack is ready to use. To change the game type in the Server Admin Console, use the Server Console and type:
+`servertravel CTF-BT-FEB-Factory.unr?game=BTPlusPlusPublicUTBT_beta3.BunnyTrackGame`
+
 ## CustomCrossHairScale
 This mod is loaded permanently. It allows to scale the crosshair as it might be too big on some resolutions.
 Any player can just go to their console (tab) and execute the following command:
