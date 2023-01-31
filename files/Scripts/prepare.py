@@ -80,6 +80,12 @@ def initial_setup():
     set_config_value(utIniFileServer, 'Engine.GameEngine', 'ServerPackages', 'WhoPushedMe', True)
     ## ZeroPingPlus103
     set_config_value(utIniFileServer, 'Engine.GameEngine', 'ServerPackages', 'ZeroPingPlus103', True)
+    ## SLV205 (StrangeLove)
+    set_config_value(utIniFileServer, 'Engine.GameEngine', 'ServerPackages', 'SLV205', True)
+    set_config_value(utIniFileServer, 'Engine.GameEngine', 'ServerPackages', 'SLV2Models', True)
+    set_config_value(utIniFileServer, 'Engine.GameEngine', 'ServerPackages', 'SLV2Sounds', True)
+    set_config_value(utIniFileServer, 'Engine.GameEngine', 'ServerPackages', 'SLV2Fonts', True)
+    set_config_value(utIniFileServer, 'Engine.GameEngine', 'ServerPackages', 'SLV2Textures', True)
 
     # Move and/or symlink the original ini files
     move_and_symlink(utIniFileServer, utIniFileData)
