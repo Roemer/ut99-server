@@ -8,13 +8,20 @@ services:
     volumes:
       - ut99-data:/ut-data
     ports:
+      # Webadmin
       - 5580:5580/tcp
+      # Game Play
       - 7777:7777/udp
+      # Server Querying
       - 7778:7778/udp
       - 7779:7779/udp
       - 7780:7780/udp
       - 7781:7781/udp
+      # LAN Discovery
       - 8777:8777/udp
+      # Server Announcement
+      - 27500:27500/tcp
+      - 27500:27500/udp
       - 27900:27900/tcp
       - 27900:27900/udp
     environment:

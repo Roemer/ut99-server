@@ -4,4 +4,5 @@
 python3 /prepare.py
 
 # Start the server
-/ut-server/ucc server $UT_SERVERURL ini=UnrealTournament.ini log=ut.log -nohomedir -lanplay
+cd /ut-server/System
+./ucc-bin server $UT_SERVERURL ini=UnrealTournament.ini log=ut.log -nohomedir -lanplay

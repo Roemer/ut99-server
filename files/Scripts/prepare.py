@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-import sys, os
+import sys, os, re
 
 # Preparations
 utServerPath = "/ut-server"
@@ -49,8 +49,19 @@ def initial_setup():
     set_config_value(utIniFileServer, 'IpServer.UdpServerUplink', 'UpdateMinutes', '1')
     set_config_value(utIniFileServer, 'IpServer.UdpServerUplink', 'MasterServerPort', '27900')
     ## Add server visibility in server browser inside game by adding correct URLs
+    remove_config_key(utIniFileServer, 'Engine.GameEngine', 'ServerActors', 'IpServer.UdpServerUplink.*')
     set_config_value(utIniFileServer, 'Engine.GameEngine', 'ServerActors', 'IpServer.UdpServerUplink MasterServerAddress=utmaster.epicgames.com MasterServerPort=27900', True)
     set_config_value(utIniFileServer, 'Engine.GameEngine', 'ServerActors', 'IpServer.UdpServerUplink MasterServerAddress=master.333networks.com MasterServerPort=27900', True)
+    set_config_value(utIniFileServer, 'Engine.GameEngine', 'ServerActors', 'IpServer.UdpServerUplink MasterServerAddress=master.qtracker.com MasterServerPort=27900', True)
+    set_config_value(utIniFileServer, 'Engine.GameEngine', 'ServerActors', 'IpServer.UdpServerUplink MasterServerAddress=master.telefragged.com MasterServerPort=27500', True)
+    set_config_value(utIniFileServer, 'Engine.GameEngine', 'ServerActors', 'IpServer.UdpServerUplink MasterServerAddress=master.errorist.eu MasterServerPort=27900', True)
+    set_config_value(utIniFileServer, 'Engine.GameEngine', 'ServerActors', 'IpServer.UdpServerUplink MasterServerAddress=master.hlkclan.net MasterServerPort=27900', True)
+    set_config_value(utIniFileServer, 'Engine.GameEngine', 'ServerActors', 'IpServer.UdpServerUplink MasterServerAddress=master.openspy.net MasterServerPort=27900', True)
+    set_config_value(utIniFileServer, 'Engine.GameEngine', 'ServerActors', 'IpServer.UdpServerUplink MasterServerAddress=master.oldunreal.com MasterServerPort=27900', True)
+    set_config_value(utIniFileServer, 'Engine.GameEngine', 'ServerActors', 'IpServer.UdpServerUplink MasterServerAddress=master2.oldunreal.com MasterServerPort=27900', True)
+    set_config_value(utIniFileServer, 'Engine.GameEngine', 'ServerActors', 'IpServer.UdpServerUplink MasterServerAddress=master.hypercoop.tk MasterServerPort=27900', True)
+    set_config_value(utIniFileServer, 'Engine.GameEngine', 'ServerActors', 'IpServer.UdpServerUplink MasterServerAddress=master.newbiesplayground.net MasterServerPort=27900', True)
+    set_config_value(utIniFileServer, 'Engine.GameEngine', 'ServerActors', 'IpServer.UdpServerUplink MasterServerAddress=master.gonespy.com MasterServerPort=27900', True)
 
     # Add Mutators
     ## CustomCrossHairScale
@@ -135,6 +146,64 @@ def set_config_to_environment(environmentKey, filePath, section, key):
     if os.environ.get(environmentKey) is not None:
         set_config_value(filePath, section, key, os.environ.get(environmentKey))
 
+def remove_config_key(filePath, section, key, valueRegex = None):
+    """
+    This method removes all occurences of the desired key in the desired section.
+
+    Args:
+        filePath (str)    : The path to the file.
+        section (str)     : The desired section name.
+        key (str)         : The desired key.
+        valueRegex (str)  : The regex of the value which needs to match in order to remove the line.
+    """
+    # Read all lines of the file (including newlines)
+    f = open(filePath, "r")
+    contents = f.readlines()
+    f.close()
+    # Loop thru all existing lines
+    inSection = False
+    linesWithKey = []
+    for index, line in enumerate(contents):
+        # Skip empty lines
+        if len(line) == 0:
+            continue
+        # Skip comments
+        if line[0] == '#' or line[0] == '/':
+            continue
+        # We found a section start
+        if line[0] == '[':
+            currSection = line[1:line.index(']')]
+            # Check if we are in the desired section
+            if currSection == section:
+                inSection = True
+                continue
+            else:
+                # If we're in the desired section and found another section, break out of the loop
+                if inSection:
+                    break
+        # No section header found but we are in the desired section
+        elif inSection:
+            # Make sure there is an = so it should be a key/value pair
+            if '=' in line:
+                # Parse the key and value
+                (currKey, currValue) = line.split('=', 1)
+                # If the key is the desired key
+                if (currKey == key):
+                    # Check if the value matches the regex if any is given
+                    if (valueRegex == None or re.search(valueRegex, currValue.strip()) != None):
+                        linesWithKey.append(index)
+
+    # Delete the lines (reversed so the indices are correct when removed)
+    if (len(linesWithKey) > 0):
+        linesWithKey.reverse()
+        for keyIndex in linesWithKey:
+            del contents[keyIndex]
+
+    # Write back the file
+    f = open(filePath, "w")
+    f.writelines(contents)
+    f.close()
+
 def set_config_value(filePath, section, key, value, alwaysInsert=False):
     """
     This method replaces an exiting key with the value or adds a new one. Also adds the section if it cannot be found.
@@ -182,10 +251,10 @@ def set_config_value(filePath, section, key, value, alwaysInsert=False):
                 # If the key is the desired key
                 if (currKey == key):
                     if (currValue.strip() == value):
-                        # The value is aleady the desired value, so skip it.
+                        # The value is already the desired value, so skip it
                         return
                     if (alwaysInsert):
-                        # Continue searching for the key/value pair
+                        # Continue searching for the exact key/value pair
                         continue
                     foundKey = True
                     break
