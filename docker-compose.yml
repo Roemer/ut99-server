@@ -26,13 +26,13 @@ services:
       - 27900:27900/udp
     environment:
       - UT_SERVERURL="CTF-Face?game=BotPack.CTFGame?mutator=BotPack.InstaGibDM,MapVoteLAv2.BDBMapVote,FlagAnnouncementsV2.FlagAnnouncements"
-      - UT_SERVERNAME='My UT Server'
-      - UT_ADMINNAME='UTAdmin'
-      - UT_ADMINEMAIL='no@one.com'
-      - UT_MOTD1='Have Fun'
-      - UT_ADMINPWD='admin'
-      - UT_WEBADMINUSER='admin'
-      - UT_WEBADMINPWD='admin'
+      - UT_SERVERNAME="My UT Server"
+      - UT_ADMINNAME="UTAdmin"
+      - UT_ADMINEMAIL="no@one.com"
+      - UT_MOTD1="Have Fun"
+      - UT_ADMINPWD="admin"
+      - UT_WEBADMINUSER="admin"
+      - UT_WEBADMINPWD="admin"
       - UT_MINPLAYERS_DM=4
       - UT_MINPLAYERS_CTF=8
       - UT_INITIALBOTS_DM=4
