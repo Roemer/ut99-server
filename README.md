@@ -1,6 +1,6 @@
 # ut99-server
 A dockerfile for a fully functional and easy configurable Unreal Tournament 99 server.
-This image is based on the original linux server 436 with all four bonus packs and the OldUnreal 469b patch for linux.
+This image is based on the original linux server 436 with all four bonus packs and the OldUnreal 469c patch for linux.
 It also includes some famous maps and mutators.
 All data can be adjusted with a `named volume` (host bind won't work) (see `Usage` for details).
 
