@@ -93,6 +93,8 @@ def initial_setup():
     set_config_value(utIniFileServer, 'Engine.GameEngine', 'ServerPackages', 'CountryFlags3', True)
     set_config_value(utIniFileServer, 'Engine.GameEngine', 'ServerPackages', 'BTPlusPlusPublicUTBT_beta3', True)
     set_config_value(utIniFileServer, 'Engine.GameEngine', 'ServerActors', 'BTPlusPlusPublicUTBT_beta3.BTPlusPlus', True)
+    ## MonsterHunt
+    set_config_value(utIniFileServer, 'Engine.GameEngine', 'ServerPackages', 'MonsterHunt', True)
 
     # Move and/or symlink the original ini files
     move_and_symlink(utIniFileServer, utIniFileData)
