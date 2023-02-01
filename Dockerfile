@@ -20,7 +20,7 @@ ADD files/Maps/* /ut-data/Maps/
 ADD files/Scripts/ /
 
 # Environment variables
-ENV UT_SERVERURL="CTF-Face?game=BotPack.CTFGame?mutator=BotPack.InstaGibDM,MapVoteLAv2.BDBMapVote,FlagAnnouncementsV2.FlagAnnouncements"
+ENV UT_SERVERURL="CTF-Face?game=BotPack.CTFGame?mutator=BotPack.InstaGibDM,MVU3.BDBMapVote,FlagAnnouncementsV2.FlagAnnouncements"
 
 # Prepare the system
 RUN dpkg --add-architecture i386 \

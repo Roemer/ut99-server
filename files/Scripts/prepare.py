@@ -73,8 +73,8 @@ def initial_setup():
     set_config_value(utIniFileServer, 'Engine.GameEngine', 'ServerPackages', 'DefaultAnnouncements', True)
     ## KickIdlePlayers2
     set_config_value(utIniFileServer, 'Engine.GameEngine', 'ServerPackages', 'KickIdlePlayers2', True)
-    ## MapVoteLAv2
-    set_config_value(utIniFileServer, 'Engine.GameEngine', 'ServerPackages', 'MapVoteLAv2', True)
+    ## Map Vote Ultimate 3
+    set_config_value(utIniFileServer, 'Engine.GameEngine', 'ServerPackages', 'MVU3', True)
     ## WhoPushedMe
     set_config_value(utIniFileServer, 'Engine.GameEngine', 'ServerPackages', 'EnhancedItems', True)
     set_config_value(utIniFileServer, 'Engine.GameEngine', 'ServerPackages', 'WhoPushedMe', True)

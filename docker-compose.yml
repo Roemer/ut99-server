@@ -25,7 +25,7 @@ services:
       - 27900:27900/tcp
       - 27900:27900/udp
     environment:
-      - UT_SERVERURL="CTF-Face?game=BotPack.CTFGame?mutator=BotPack.InstaGibDM,MapVoteLAv2.BDBMapVote,FlagAnnouncementsV2.FlagAnnouncements"
+      - UT_SERVERURL="CTF-Face?game=BotPack.CTFGame?mutator=BotPack.InstaGibDM,MVU3.BDBMapVote,FlagAnnouncementsV2.FlagAnnouncements"
       - UT_SERVERNAME="My UT Server"
       - UT_ADMINNAME="UTAdmin"
       - UT_ADMINEMAIL="no@one.com"
