@@ -83,9 +83,3 @@ When this mode is enabled, detects if someone is killed because someone else pus
 ## ZeroPingPlus103
 This mod is added as a mutator. So it must be added to the mutators list to work.
 When this mod is enabled, the clientside calculates if a hit was a hit or not and tells this the server, effectively leading to 0 ping.
-
-# Development
-To build the image yourself, just use
-```
-docker compose build --no-cache
-```

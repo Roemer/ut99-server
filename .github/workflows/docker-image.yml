@@ -19,7 +19,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v3
     - name: Build the Docker image
-      run: docker compose build --no-cache
+      run: docker build -f Dockerfile -t $IMAGE_NAME:$IMAGE_TAG --no-cache .
     - name: Docker login
       env:
         DOCKER_USER: ${{secrets.DOCKER_USER}}
