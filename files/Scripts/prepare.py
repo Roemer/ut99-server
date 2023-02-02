@@ -92,6 +92,12 @@ def initial_setup():
     set_config_value(utIniFileServer, 'Engine.GameEngine', 'ServerPackages', 'BTPPUser', True)
     set_config_value(utIniFileServer, 'Engine.GameEngine', 'ServerPackages', 'CountryFlags3', True)
     set_config_value(utIniFileServer, 'Engine.GameEngine', 'ServerPackages', 'BTPlusPlusPublicUTBT_beta3', True)
+    ## ChaosUT
+    set_config_value(utIniFileServer, 'Engine.GameEngine', 'ServerPackages', 'UTChaosMap', True)
+    set_config_value(utIniFileServer, 'Engine.GameEngine', 'ServerPackages', 'ChaosUTRHUD', True)
+    set_config_value(utIniFileServer, 'Engine.GameEngine', 'ServerPackages', 'ChaosUT', True)
+    set_config_value(utIniFileServer, 'Engine.GameEngine', 'ServerPackages', 'ChaosUTMiscMuts', True)
+    set_config_value(utIniFileServer, 'Engine.GameEngine', 'ServerPackages', 'ChaosGames', True)
     ## MonsterHunt
     set_config_value(utIniFileServer, 'Engine.GameEngine', 'ServerPackages', 'MonsterHunt', True)
 
