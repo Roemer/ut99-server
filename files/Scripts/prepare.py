@@ -77,8 +77,12 @@ def initial_setup():
     set_config_value(utIniFileServer, 'Engine.GameEngine', 'ServerPackages', 'MapVoteLAv2', True)
     ## Map Vote Ultimate 3
     set_config_value(utIniFileServer, 'Engine.GameEngine', 'ServerPackages', 'MVU3', True)
+    ## MapVoteX
+    set_config_value(utIniFileServer, 'Engine.GameEngine', 'ServerPackages', 'MapVoteX112', True)
+    ## Map Vote Extended
+    set_config_value(utIniFileServer, 'Engine.GameEngine', 'ServerPackages', 'MVE2f', True)
     ## VoteSys
-    set_config_value(utIniFileServer, 'Engine.GameEngine', 'ServerPackages', 'VoteSys_v7c', True)
+    #set_config_value(utIniFileServer, 'Engine.GameEngine', 'ServerPackages', 'VoteSys_v7c', True)
     ## WhoPushedMe
     set_config_value(utIniFileServer, 'Engine.GameEngine', 'ServerPackages', 'EnhancedItems', True)
     set_config_value(utIniFileServer, 'Engine.GameEngine', 'ServerPackages', 'WhoPushedMe', True)
