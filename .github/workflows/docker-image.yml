@@ -2,15 +2,22 @@ name: Docker Image CI
 
 on:
   push:
-    branches: [ main ]
 
 jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      IMAGE_NAME: roemer/ut99-server:latest
+      IMAGE_NAME: roemer/ut99-server
     steps:
-    - uses: actions/checkout@v2
+    - name: Set Image Tag
+      run: |
+        if [[ $GITHUB_REF_NAME == 'main' ]]; then
+          echo "IMAGE_TAG=latest" >> "$GITHUB_ENV"
+        else
+          echo "IMAGE_TAG=$GITHUB_REF_NAME" >> "$GITHUB_ENV"
+        fi
+    - name: Checkout
+      uses: actions/checkout@v3
     - name: Build the Docker image
       run: docker compose build --no-cache
     - name: Docker login
@@ -19,6 +26,6 @@ jobs:
         DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
       run: docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
     - name: Docker push
-      run: docker push $IMAGE_NAME
+      run: docker push $IMAGE_NAME:$IMAGE_TAG
     - name: Docker logout
       run: docker logout
