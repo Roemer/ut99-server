@@ -14,13 +14,15 @@ ADD files/Mutators/* /ut-data/
 ADD files/Mods/* /ut-data/
 # Additional Maps Packed
 ADD files/Maps-Packed/* /ut-data/
+# Customized Configs
+ADD files/Configs/* /ut-data/System/
 # Additional Single Maps
 ADD files/Maps/* /ut-data/Maps/
 # Startup & health scripts
 ADD files/Scripts/ /
 
 # Environment variables
-ENV UT_SERVERURL="CTF-Face?game=BotPack.CTFGame?mutator=BotPack.InstaGibDM,MVU3.BDBMapVote,FlagAnnouncementsV2.FlagAnnouncements"
+ENV UT_SERVERURL="CTF-Face?game=BotPack.CTFGame?mutator=BotPack.InstaGibDM,VoteSys_v7d.MutVoteSys,FlagAnnouncementsV2.FlagAnnouncements"
 
 # Prepare the system
 RUN dpkg --add-architecture i386 \
