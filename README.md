@@ -21,7 +21,7 @@ This basically works by having this files in this volume and on start of the ser
 ## Environment Variables
 | Variable | Mandatory | Description |
 | -------- | --------- | ----------- |
-| UT_SERVERURL | Yes | This is the default uri for the server startup. By default, it looks like: `CTF-Face?game=BotPack.CTFGame?mutator=BotPack.InstaGibDM,MVU3.BDBMapVote,FlagAnnouncementsV2.FlagAnnouncements` |
+| UT_SERVERURL | Yes | This is the default uri for the server startup. By default, it looks like: `CTF-Face?game=BotPack.CTFGame?mutator=BotPack.InstaGibDM,VoteSys_v7d.MutVoteSys,FlagAnnouncementsV2.FlagAnnouncements` |
 | UT_SERVERNAME | No | If this variable is set, it will always override the server name in `UnrealTournament.ini` with this on startup. |
 | UT_ADMINNAME | No | If this variable is set, it will always override the admin name in `UnrealTournament.ini` with this on startup. |
 | UT_ADMINEMAIL | No | If this variable is set, it will always override the admin email in `UnrealTournament.ini` with this on startup. |
@@ -47,11 +47,14 @@ Also all ini files can be found there in the `System` folder so they can be adju
 BunnyTrack is ready to use. To change the game type in the Server Admin Console, use the Server Console and type:
 `servertravel CTF-BT-FEB-Factory.unr?game=BTPlusPlusPublicUTBT_beta3.BunnyTrackGame`
 
+## ChaosUT
+ChaosUT and a few maps are added. Change the GameType to it to use it.
+
 ## CustomCrossHairScale
 This mod is loaded permanently. It allows to scale the crosshair as it might be too big on some resolutions.
 Any player can just go to their console (tab) and execute the following command:
 `mutate ch_scale 1`
-Note: Might fail for weapons with a secondary crosshair like sniper, so it is mostly usefull for Insta-Gib.
+Note: Might fail for weapons with a secondary crosshair like sniper, so it is mostly usefull for InstaGib.
 
 ## FlagAnnouncementsV2
 This mod is added as a mutator. So it must be added to the mutators list to work.
@@ -63,17 +66,23 @@ This mod is added as a mutator. So it must be added to the mutators list to work
 When this mod is enabled, inactive users will be kicked from the server.
 Further configuration can be done in the `System/KickIdlePlayers2.ini` file.
 
-## MVU3 (Map Vote Ultimate 3)
+## MonsterHunt
+MonsterHunt and a few maps are added. Change the GameType to it to use it.
+
+## MVE - Map Vote Extended
 This mod is added as a mutator. So it must be added to the mutators list to work.
 When this mode is enabled, a map vote / kick screen will come after each map so the users can vote for the next map.
-Further configuration can be done in the `System/MVU_Config.ini` file.
+You can start a vote anytime by saying `!v`.
+IF you login as admin with `adminlogin <password>` you see an additional admin tab.
+Thanks to the author: https://github.com/peterekepeter/ut99-mves
+Further configuration can be done in the `System/MVE_Config.ini` file.
 
 ## NoSelfDamagev03
 This mod is added as a mutator. So it must be added to the mutators list to work.
 When this mod is enabled, self damage (for example from rocket launchers) can be disabled.
 Further configuration can be done in the `System/NoSelfDamage.ini` file.
 
-## StrangeLove v2.05
+## SLV - StrangeLove v2.05
 SLV, or Strangelove, is a mod inspired by the film Dr. Strangelove where redeemers are replaced with missiles that a player can use to fly around a map.
 
 ## WhoPushedMe
