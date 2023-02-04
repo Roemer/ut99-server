@@ -106,14 +106,14 @@ def initial_setup():
     # Extend default MapLists
     ## CTF Maps
     currentIndex = 0
-    set_config_value(utIniFileServer, 'Botpack.CTFMapList', "Maps[{currentIndex++}]", 'CTF-Gauntlet.unr', True)
-    set_config_value(utIniFileServer, 'Botpack.CTFMapList', "Maps[{currentIndex++}]", 'CTF-Command.unr', True)
-    set_config_value(utIniFileServer, 'Botpack.CTFMapList', "Maps[{currentIndex++}]", 'CTF-Coret.unr', True)
-    set_config_value(utIniFileServer, 'Botpack.CTFMapList', "Maps[{currentIndex++}]", 'CTF-Dreary.unr', True)
-    set_config_value(utIniFileServer, 'Botpack.CTFMapList', "Maps[{currentIndex++}]", 'CTF-LavaGiant.unr', True)
-    set_config_value(utIniFileServer, 'Botpack.CTFMapList', "Maps[{currentIndex++}]", 'CTF-November.unr', True)
-    set_config_value(utIniFileServer, 'Botpack.CTFMapList', "Maps[{currentIndex++}]", 'CTF-andACTION.unr', True)
-    set_config_value(utIniFileServer, 'Botpack.CTFMapList', "Maps[{currentIndex++}]", 'CTF-Face.unr', True)
+    set_config_value(utIniFileServer, 'Botpack.CTFMapList', f"Maps[{currentIndex++}]", 'CTF-Gauntlet.unr', True)
+    set_config_value(utIniFileServer, 'Botpack.CTFMapList', f"Maps[{currentIndex++}]", 'CTF-Command.unr', True)
+    set_config_value(utIniFileServer, 'Botpack.CTFMapList', f"Maps[{currentIndex++}]", 'CTF-Coret.unr', True)
+    set_config_value(utIniFileServer, 'Botpack.CTFMapList', f"Maps[{currentIndex++}]", 'CTF-Dreary.unr', True)
+    set_config_value(utIniFileServer, 'Botpack.CTFMapList', f"Maps[{currentIndex++}]", 'CTF-LavaGiant.unr', True)
+    set_config_value(utIniFileServer, 'Botpack.CTFMapList', f"Maps[{currentIndex++}]", 'CTF-November.unr', True)
+    set_config_value(utIniFileServer, 'Botpack.CTFMapList', f"Maps[{currentIndex++}]", 'CTF-andACTION.unr', True)
+    set_config_value(utIniFileServer, 'Botpack.CTFMapList', f"Maps[{currentIndex++}]", 'CTF-Face.unr', True)
 
     # Move and/or symlink the original ini files
     move_and_symlink(utIniFileServer, utIniFileData)
