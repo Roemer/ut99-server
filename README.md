@@ -9,19 +9,20 @@ Just run the docker image with the following command:
 ```
 docker run --name ut99 -p 5580:5580 -p 7777:7777/udp -p 7778:7778/udp -p 7779:7779/udp -p 7780:7780/udp -p 7781:7781/udp -p 8777:8777/udp -p 27900:27900 -p 27900:27900/udp -v ut99-data:/ut-data roemer/ut99-server:latest
 ```
-Alternatively, you can use compose to run it:
+Alternatively, you can use compose with the file `docker-compose.yml` and run it:
 ```
 docker compose up
 ```
+
 This will create and run the container, exposing the web-admin under port 5580 and the game under 7777.
 It will also create a docker volume named `ut99-data` which contains all the ini files and non-standard maps and mods.
-You can even add your own maps and mods there or edit all the ini files in that volume and restart the server for the new files or configs.
+You can even add your own maps and mods there or edit all the ini files in that volume and restart the server to load the new files or configs.
 This basically works by having this files in this volume and on start of the server, all files in the volume are symlinked into the corresponding ut-server folder.
 
 ## Environment Variables
 | Variable | Mandatory | Description |
 | -------- | --------- | ----------- |
-| UT_SERVERURL | Yes | This is the default uri for the server startup. By default, it looks like: `CTF-Face?game=BotPack.CTFGame?mutator=BotPack.InstaGibDM,VoteSys_v7d.MutVoteSys,FlagAnnouncementsV2.FlagAnnouncements` |
+| UT_SERVERURL | Yes | This is the default uri for the server startup. By default, it looks like: `CTF-Face?game=BotPack.CTFGame?mutator=BotPack.InstaGibDM,MVES.MapVote,FlagAnnouncementsV2.FlagAnnouncements` |
 | UT_SERVERNAME | No | If this variable is set, it will always override the server name in `UnrealTournament.ini` with this on startup. |
 | UT_ADMINNAME | No | If this variable is set, it will always override the admin name in `UnrealTournament.ini` with this on startup. |
 | UT_ADMINEMAIL | No | If this variable is set, it will always override the admin email in `UnrealTournament.ini` with this on startup. |
@@ -44,8 +45,7 @@ Also all ini files can be found there in the `System` folder so they can be adju
 # Included Mods and Mutators
 
 ## BunnyTrack
-BunnyTrack is ready to use. To change the game type in the Server Admin Console, use the Server Console and type:
-`servertravel CTF-BT-FEB-Factory.unr?game=BTPlusPlusPublicUTBT_beta3.BunnyTrackGame`
+BunnyTrack is ready to use. Change the GameType to it to use it.
 
 ## ChaosUT
 ChaosUT and a few maps are added. Change the GameType to it to use it.
@@ -54,7 +54,7 @@ ChaosUT and a few maps are added. Change the GameType to it to use it.
 This mod is loaded permanently. It allows to scale the crosshair as it might be too big on some resolutions.
 Any player can just go to their console (tab) and execute the following command:
 `mutate ch_scale 1`
-Note: Might fail for weapons with a secondary crosshair like sniper, so it is mostly usefull for InstaGib.
+Note: Usually fails for weapons with a secondary crosshair like sniper, so it is mostly only usefull for InstaGib.
 
 ## FlagAnnouncementsV2
 This mod is added as a mutator. So it must be added to the mutators list to work.
@@ -76,6 +76,10 @@ You can start a vote anytime by saying `!v`.
 IF you login as admin with `adminlogin <password>` you see an additional admin tab.
 Thanks to the author: https://github.com/peterekepeter/ut99-mves
 Further configuration can be done in the `System/MVE_Config.ini` file.
+
+## VoteSys
+An alternative map voting. Still in testing phase.
+Thanks to the author: https://github.com/Deaod/VoteSys
 
 ## NoSelfDamagev03
 This mod is added as a mutator. So it must be added to the mutators list to work.
