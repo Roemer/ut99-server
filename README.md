@@ -61,6 +61,10 @@ This mod is added as a mutator. So it must be added to the mutators list to work
 When this mod is enabled, there is a voice that tells if and which flag is taken/dropped/returned.
 Further configuration can be done in the `System/FlagAnnouncements.ini` file.
 
+## InstaGibPlus
+Better InstaGib.
+Thanks to: https://github.com/utspect/InstaGibPlus
+
 ## KickIdlePlayers2
 This mod is added as a mutator. So it must be added to the mutators list to work.
 When this mod is enabled, inactive users will be kicked from the server.
