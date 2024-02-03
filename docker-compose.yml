@@ -32,6 +32,7 @@ services:
       - UT_WEBADMINPWD="admin"
       - UT_MINPLAYERS_DM=4
       - UT_MINPLAYERS_CTF=8
+      - UT_MAXPLAYERS=32
       - UT_INITIALBOTS_DM=4
       - UT_INITIALBOTS_CTF=8
 volumes:
