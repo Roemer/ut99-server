@@ -42,6 +42,7 @@ def initial_setup():
     ## Add some bots by default
     set_config_value(utIniFileServer, 'Botpack.DeathMatchPlus', 'MinPlayers', '4')
     set_config_value(utIniFileServer, 'Botpack.CTFGame', 'MinPlayers', '8')
+    set_config_value(utIniFileServer, 'Engine.GameInfo', 'MaxPlayers', '10')
     set_config_value(utIniFileServer, 'Botpack.DeathMatchPlus', 'InitialBots', '4')
     set_config_value(utIniFileServer, 'Botpack.CTFGame', 'InitialBots', '8')
     ## Section to enable/disable publishing the server in the server list
