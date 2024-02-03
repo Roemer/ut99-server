@@ -34,6 +34,7 @@ This basically works by having this files in this volume and on start of the ser
 | UT_WEBADMINPWD | No | If this variable is set, it will always override the web admin password in `UnrealTournament.ini` with this on startup. |
 | UT_MINPLAYERS_DM | No | Set the minimum number of players in DeathMatchPlus.
 | UT_MINPLAYERS_CTF | No | Set the minimum number of players in CTF.
+| UT_MAXPLAYERS | No | Set the max number of players.
 | UT_INITIALBOTS_DM | No | Set the initial number of bots in DeathMatchPlus.
 | UT_INITIALBOTS_CTF | No | Set the initial number of bots in CTF.
 

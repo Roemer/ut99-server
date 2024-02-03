@@ -174,6 +174,7 @@ def prepare():
     ## Replace / Add Minimum Players
     set_config_to_environment('UT_MINPLAYERS_DM', utIniFileServer, 'Botpack.DeathMatchPlus', 'MinPlayers')
     set_config_to_environment('UT_MINPLAYERS_CTF', utIniFileServer, 'Botpack.CTFGame', 'MinPlayers')
+    set_config_to_environment('UT_MAXPLAYERS', utIniFileServer, 'Engine.GameInfo', 'MaxPlayers')
     set_config_to_environment('UT_INITIALBOTS_DM', utIniFileServer, 'Botpack.DeathMatchPlus', 'InitialBots')
     set_config_to_environment('UT_INITIALBOTS_CTF', utIniFileServer, 'Botpack.CTFGame', 'InitialBots')
 
