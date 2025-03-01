@@ -1,4 +1,3 @@
-version: "3.9"
 services:
   ut99-server:
     image: roemer/ut99-server:latest
