@@ -2,8 +2,8 @@ FROM amd64/ubuntu:latest
 
 # Original Server v436
 ADD files/ut-server-linux-436.tar.gz /
-# Update to 469c
-ADD files/Patches/OldUnreal-UTPatch469d-Linux-x86.tar.bz2 /ut-server/
+# Update to 469e
+ADD files/Patches/OldUnreal-UTPatch469e-Linux-x86.tar.bz2 /ut-server/
 # Fix for broken maps from the original file
 ADD files/Patches/BrokenMapsFix.tar.gz /ut-server/
 # Add the bonus packs
